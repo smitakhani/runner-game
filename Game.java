@@ -2,11 +2,12 @@
 <applet code="Game" height="650" width="1300">
 </applet>
 */
+
 import java.applet.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Game extends Applet implements KeyListener,Runnable{
+public class Game extends Applet implements KeyListener,Runnable {
 		
 		Thread t;
 		boolean flag;
@@ -35,18 +36,21 @@ public class Game extends Applet implements KeyListener,Runnable{
 				flag=true;
 			}
 		}
-		public void init(){
+		public void init() {
+		
+			String path = (getCodeBase().toString() + "assets/"); 
+	
 			for(int i=1;i<=6;i++)
 			{
-				img[i]=getImage(getCodeBase(),i+".png");
+				img[i]=getImage(path, i+".png");
 			}
-			back=getImage(getCodeBase(),"B1.jpg");
-			back1=getImage(getCodeBase(),"B2.jpg");
-			obj=getImage(getCodeBase(),"rock.png");
+			back=getImage(path, "B1.jpg");
+			back1=getImage(path, "B2.jpg");
+			obj=getImage(path,"rock.png");
 			addKeyListener(this);
 			setFocusable(true);
 		}
-		public void start(){
+		public void start() {
 			t=new Thread(this);
 			if(!GAMEOVER)
 			{
@@ -54,7 +58,7 @@ public class Game extends Applet implements KeyListener,Runnable{
 			}
 			t.start();
 		}
-		public void run(){
+		public void run() {
 			
 			try{	
 				for(;;)
@@ -96,23 +100,23 @@ public class Game extends Applet implements KeyListener,Runnable{
 						repaint();
 						Thread.sleep(100);
 				}
-			}catch(Exception e) {}
+			}catch(Exception e) { }
 			
 		}
-		public void stop(){
+		public void stop() {
 			t=null;
 		}
 		public void keyPressed(KeyEvent e) {  
 			if(e.getKeyCode()==KeyEvent.VK_UP && !GAMEOVER && y>400)
-        	{
-        		k=1;
-        		y=y-150;
-        		w=w+45;
-        		repaint();
-        	}
-    	}  
-    	public void keyReleased(KeyEvent e) {      	
-    	}  
-    	public void keyTyped(KeyEvent e) {      
-    	}
+		{
+			k=1;
+			y=y-150;
+			w=w+45;
+			repaint();
+		}
+	}  
+	public void keyReleased(KeyEvent e) {      	
+	}  
+	public void keyTyped(KeyEvent e) {      
+	}
 }
