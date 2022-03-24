@@ -4,6 +4,6 @@ AWT Components and threading concept.
 
 How to run:<br/>
 -> You must have Java installed
-   in your System.<br/>
+   in your system.<br/>
 -> Use appletviewer utility to run.
    appletviewer game.java
