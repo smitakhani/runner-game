@@ -6,6 +6,7 @@
 import java.applet.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.net.URL;
 
 public class Game extends Applet implements KeyListener,Runnable {
 		
@@ -38,17 +39,22 @@ public class Game extends Applet implements KeyListener,Runnable {
 		}
 		public void init() {
 		
-			String path = (getCodeBase().toString() + "assets/"); 
+			try {
+				
+				String str = (getCodeBase().toString() + "assets/"); 
+				URL path = new URL(str);
 	
-			for(int i=1;i<=6;i++)
-			{
-				img[i]=getImage(path, i+".png");
-			}
-			back=getImage(path, "B1.jpg");
-			back1=getImage(path, "B2.jpg");
-			obj=getImage(path,"rock.png");
-			addKeyListener(this);
-			setFocusable(true);
+				for(int i=1;i<=6;i++)
+				{
+					img[i]=getImage(path, i+".png");
+				}
+				back=getImage(path, "B1.jpg");
+				back1=getImage(path, "B2.jpg");
+				obj=getImage(path,"rock.png");
+				addKeyListener(this);
+				setFocusable(true);
+
+			}catch(Exception e) {}
 		}
 		public void start() {
 			t=new Thread(this);
@@ -100,7 +106,7 @@ public class Game extends Applet implements KeyListener,Runnable {
 						repaint();
 						Thread.sleep(100);
 				}
-			}catch(Exception e) { }
+			}catch(Exception e) {}
 			
 		}
 		public void stop() {
